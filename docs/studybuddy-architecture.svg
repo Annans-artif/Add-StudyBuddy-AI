@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title description">
+  <title id="title">StudyBuddy AI architecture</title>
+  <desc id="description">The student uses the local React app. It communicates with a local FastAPI backend, which reads and writes SQLite and sends selected notes to LM Studio for AI study materials and grounded answers.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto-start-reverse"><path d="M0 0 9 4.5 0 9Z" fill="#7560a5"/></marker>
+    <marker id="arrow-green" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto-start-reverse"><path d="M0 0 9 4.5 0 9Z" fill="#56836a"/></marker>
+    <style>
+      text{font-family:Inter,'Segoe UI',Arial,sans-serif;fill:#292631}
+      .title{font-size:34px;font-weight:750;letter-spacing:-.8px}
+      .subtitle{font-size:16px;fill:#706b79}
+      .eyebrow{font-size:11px;font-weight:750;letter-spacing:1.6px;fill:#7560a5}
+      .node-title{font-size:20px;font-weight:700}
+      .node-sub{font-size:13px;fill:#706b79}
+      .item{font-size:14px;font-weight:600}
+      .small{font-size:12px;fill:#706b79}
+      .code{font-family:Consolas,monospace;font-size:12px;fill:#63527f}
+    </style>
+  </defs>
+
+  <rect width="1440" height="760" fill="#fbfafc"/>
+  <text x="72" y="70" class="eyebrow">STUDYBUDDY AI</text>
+  <text x="72" y="116" class="title">System architecture</text>
+  <text x="72" y="146" class="subtitle">A local study workflow for turning class notes into practice and recall.</text>
+
+  <!-- Student -->
+  <rect x="72" y="343" width="190" height="134" rx="14" fill="#fff" stroke="#ddd8e5" stroke-width="1.5"/>
+  <text x="96" y="383" class="eyebrow">USER</text>
+  <text x="96" y="416" class="node-title">Student</text>
+  <text x="96" y="443" class="node-sub">High school or university</text>
+
+  <!-- App and local services boundary -->
+  <rect x="300" y="185" width="1068" height="454" rx="20" fill="#f8f6fb" stroke="#bfb4d1" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <rect x="326" y="169" width="238" height="32" rx="16" fill="#f8f6fb"/>
+  <text x="338" y="190" class="eyebrow">RUNS ON THE STUDENT'S DEVICE</text>
+
+  <!-- Frontend -->
+  <rect x="336" y="300" width="280" height="220" rx="14" fill="#fff" stroke="#d8d1e2" stroke-width="1.5"/>
+  <rect x="336" y="300" width="5" height="220" rx="2.5" fill="#8068ad"/>
+  <text x="362" y="338" class="eyebrow">FRONTEND</text>
+  <text x="362" y="372" class="node-title">React + TypeScript</text>
+  <text x="362" y="400" class="node-sub">Vite web app</text>
+  <line x1="362" y1="421" x2="590" y2="421" stroke="#ebe7f0"/>
+  <text x="362" y="451" class="item">Notes · AI Q&amp;A</text>
+  <text x="362" y="477" class="item">Quizzes · flashcards</text>
+  <text x="362" y="503" class="item">Planner · focus timer</text>
+
+  <!-- Backend -->
+  <rect x="682" y="300" width="298" height="220" rx="14" fill="#fff" stroke="#d8d1e2" stroke-width="1.5"/>
+  <rect x="682" y="300" width="5" height="220" rx="2.5" fill="#8068ad"/>
+  <text x="708" y="338" class="eyebrow">BACKEND</text>
+  <text x="708" y="372" class="node-title">FastAPI</text>
+  <text x="708" y="400" class="node-sub">Request validation &amp; study APIs</text>
+  <line x1="708" y1="421" x2="954" y2="421" stroke="#ebe7f0"/>
+  <text x="708" y="453" class="item">Builds summaries, quizzes, cards</text>
+  <text x="708" y="480" class="item">Validates quoted note evidence</text>
+  <text x="708" y="505" class="code">127.0.0.1:8001</text>
+
+  <!-- Local data and AI services -->
+  <rect x="1040" y="255" width="290" height="140" rx="14" fill="#fff" stroke="#c7d9cb" stroke-width="1.5"/>
+  <rect x="1040" y="255" width="5" height="140" rx="2.5" fill="#6f9b79"/>
+  <text x="1066" y="291" class="eyebrow" fill="#56836a">DATA</text>
+  <text x="1066" y="325" class="node-title">SQLite</text>
+  <text x="1066" y="352" class="node-sub">Notes, quizzes, reviews, tasks</text>
+  <text x="1066" y="378" class="code">backend/studybuddy.db</text>
+
+  <rect x="1040" y="430" width="290" height="140" rx="14" fill="#fff" stroke="#c7d9cb" stroke-width="1.5"/>
+  <rect x="1040" y="430" width="5" height="140" rx="2.5" fill="#6f9b79"/>
+  <text x="1066" y="466" class="eyebrow" fill="#56836a">LOCAL AI</text>
+  <text x="1066" y="500" class="node-title">LM Studio</text>
+  <text x="1066" y="527" class="node-sub">Selected note → study content</text>
+  <text x="1066" y="553" class="code">127.0.0.1:1234/v1</text>
+
+  <!-- Data flow -->
+  <path d="M262 410H326" fill="none" stroke="#7560a5" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="294" y="396" text-anchor="middle" class="small">uses</text>
+
+  <path d="M616 400H682" fill="none" stroke="#7560a5" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="649" y="384" text-anchor="middle" class="small">HTTP / JSON</text>
+
+  <path d="M980 325H1040" fill="none" stroke="#56836a" stroke-width="2" marker-start="url(#arrow-green)" marker-end="url(#arrow-green)"/>
+  <text x="1010" y="309" text-anchor="middle" class="small">read / write</text>
+
+  <path d="M980 475H1040" fill="none" stroke="#56836a" stroke-width="2" marker-start="url(#arrow-green)" marker-end="url(#arrow-green)"/>
+  <text x="1010" y="459" text-anchor="middle" class="small">note / result</text>
+
+  <!-- Study loop -->
+  <line x1="72" y1="691" x2="1368" y2="691" stroke="#e7e3eb"/>
+  <text x="72" y="727" class="eyebrow">STUDY LOOP</text>
+  <text x="228" y="727" class="node-sub">Capture notes</text>
+  <text x="360" y="727" class="node-sub" fill="#a49bab">→</text>
+  <text x="390" y="727" class="node-sub">Understand with evidence</text>
+  <text x="610" y="727" class="node-sub" fill="#a49bab">→</text>
+  <text x="640" y="727" class="node-sub">Practice</text>
+  <text x="728" y="727" class="node-sub" fill="#a49bab">→</text>
+  <text x="758" y="727" class="node-sub">Review &amp; remember</text>
+</svg>
